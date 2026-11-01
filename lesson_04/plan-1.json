@@ -1,0 +1,167 @@
+{
+  "explainVersion": "1",
+  "queryPlanner": {
+    "namespace": "logs.events",
+    "parsedQuery": {
+      "$and": [
+        {
+          "level": {
+            "$eq": "error"
+          }
+        },
+        {
+          "service": {
+            "$eq": "payments"
+          }
+        },
+        {
+          "duration_ms": {
+            "$gt": 500
+          }
+        }
+      ]
+    },
+    "indexFilterSet": false,
+    "queryHash": "8A859EC9",
+    "planCacheShapeHash": "8A859EC9",
+    "planCacheKey": "16B4B7DA",
+    "optimizationTimeMillis": 0,
+    "optimizationTimeMicros": 168,
+    "maxIndexedOrSolutionsReached": false,
+    "maxIndexedAndSolutionsReached": false,
+    "maxScansToExplodeReached": false,
+    "prunedSimilarIndexes": false,
+    "winningPlan": {
+      "isCached": false,
+      "stage": "SORT",
+      "sortPattern": {
+        "ts": -1
+      },
+      "memLimit": 104857600,
+      "type": "simple",
+      "inputStage": {
+        "stage": "COLLSCAN",
+        "filter": {
+          "$and": [
+            {
+              "level": {
+                "$eq": "error"
+              }
+            },
+            {
+              "service": {
+                "$eq": "payments"
+              }
+            },
+            {
+              "duration_ms": {
+                "$gt": 500
+              }
+            }
+          ]
+        },
+        "nss": "logs.events",
+        "direction": "forward"
+      }
+    },
+    "rejectedPlans": []
+  },
+  "executionStats": {
+    "executionSuccess": true,
+    "nReturned": 33,
+    "executionTimeMillis": 0,
+    "executionTimeMicros": 869,
+    "totalKeysExamined": 0,
+    "totalDocsExamined": 1200,
+    "executionStages": {
+      "isCached": false,
+      "stage": "SORT",
+      "nReturned": 33,
+      "executionTimeMillisEstimate": 0,
+      "works": 1235,
+      "advanced": 33,
+      "needTime": 1201,
+      "needYield": 0,
+      "saveState": 0,
+      "restoreState": 0,
+      "isEOF": 1,
+      "sortPattern": {
+        "ts": -1
+      },
+      "memLimit": 104857600,
+      "type": "simple",
+      "totalDataSizeSorted": 9181,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledRecords": 0,
+      "spilledBytes": 0,
+      "spilledDataStorageSize": 0,
+      "peakTrackedMemBytes": 9181,
+      "inputStage": {
+        "stage": "COLLSCAN",
+        "filter": {
+          "$and": [
+            {
+              "level": {
+                "$eq": "error"
+              }
+            },
+            {
+              "service": {
+                "$eq": "payments"
+              }
+            },
+            {
+              "duration_ms": {
+                "$gt": 500
+              }
+            }
+          ]
+        },
+        "nReturned": 33,
+        "executionTimeMillisEstimate": 0,
+        "works": 1201,
+        "advanced": 33,
+        "needTime": 1167,
+        "needYield": 0,
+        "saveState": 0,
+        "restoreState": 0,
+        "isEOF": 1,
+        "nss": "logs.events",
+        "direction": "forward",
+        "docsExamined": 1200,
+        "seeks": 0
+      }
+    }
+  },
+  "queryShapeHash": "AA9EF5115100C33D93A9AC548254C9638550F4CE3DB41D1D61E56D93F433CF4D",
+  "peakTrackedMemBytes": 9181,
+  "command": {
+    "find": "events",
+    "filter": {
+      "service": "payments",
+      "level": "error",
+      "duration_ms": {
+        "$gt": 500
+      }
+    },
+    "sort": {
+      "ts": -1
+    },
+    "$db": "logs"
+  },
+  "serverInfo": {
+    "host": "DESKTOP-ACF9IFT",
+    "port": 27017,
+    "version": "9.0.4",
+    "gitVersion": "64ade602b836c9adeffba7fa038c887ffab56196"
+  },
+  "serverParameters": {
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryFrameworkControl": "trySbeRestricted",
+    "internalQueryPlannerIgnoreIndexWithCollationForRegex": 1
+  },
+  "ok": 1
+}
